@@ -1,5 +1,5 @@
 FROM php:7.2-apache
-MAINTAINER ilovintit <ilovintit@gmail.com>
+MAINTAINER ZJ-Rong <qq307365873@gmail.com>
 
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
