@@ -21,12 +21,15 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libicu-dev \
     --no-install-recommends \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt pdo_mysql pdo_pgsql pdo_sqlite zip curl\
+    && docker-php-ext-install -j$(nproc) iconv pdo_mysql pdo_pgsql pdo_sqlite zip curl\
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
 
 RUN pecl install apcu memcached mongodb redis \
 	&& docker-php-ext-enable apcu memcached mongodb redis
+
+RUN pecl install mcrypt \
+    && docker-php-ext-enable mcrypt
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor
 
